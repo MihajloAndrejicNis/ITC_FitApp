@@ -563,6 +563,7 @@ public class MainActivity extends AppCompatActivity {
                 MainAdapter mainAdapter = new MainAdapter(list, tasks, MainActivity.this);
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(MainActivity.this);
                 rvMain.setLayoutManager(linearLayoutManager);
+                rvMain.setHasFixedSize(true);
 
                 ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
                 itemTouchHelper.attachToRecyclerView(rvMain);

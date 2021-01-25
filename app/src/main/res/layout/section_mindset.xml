@@ -13,10 +13,9 @@
                     android:layout_height="wrap_content"
 
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/mindset_constr"
 
                     android:text="Featured Mindset"
-                    android:textStyle="bold"
                     android:textSize="26dp"
 
 
@@ -68,12 +67,12 @@
                     android:layout_height="wrap_content"
                     android:text="Meditation for Medium"
                     android:textColor="@color/white"
-                    android:textStyle="bold"
                     android:textSize="20sp"
                     android:gravity="start"
                     app:layout_constraintBottom_toBottomOf="@+id/mindset_constr"
                     app:layout_constraintStart_toStartOf="@+id/mindset_constr"
-                    android:layout_marginStart="5dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginBottom="20dp"
 
                     />
 

@@ -133,7 +133,9 @@ public class MainAdapter extends RecyclerView.Adapter {
                 }
                 else
                 {
-                    viewHolderOne.pair1.setVisibility(View.GONE);
+                    viewHolderOne.workout_icon_first.setBackgroundResource(R.drawable.ic_sat);
+                    viewHolderOne.workout_icon_first_about.setText(tasks.getWorkouts().getTime()+"min");
+//                    viewHolderOne.pair1.setVisibility(View.GONE);
                 }
 
                 break;
