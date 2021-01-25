@@ -5,7 +5,7 @@ import com.mihajloandrejic.fitnessapp.helper.Type;
 
 public class Mindset implements Type {
 
-    @SerializedName("title")
+    @SerializedName("title:")
     private String title;
 
     @SerializedName("background")

@@ -9,12 +9,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.button.MaterialButton;
 import com.mihajloandrejic.fitnessapp.App;
 import com.mihajloandrejic.fitnessapp.R;
@@ -22,10 +24,8 @@ import com.mihajloandrejic.fitnessapp.datamodels.Equipment;
 import com.mihajloandrejic.fitnessapp.datamodels.Recipe;
 import com.mihajloandrejic.fitnessapp.datamodels.Tasks;
 import com.mihajloandrejic.fitnessapp.datamodels.Workout;
-import com.squareup.picasso.Picasso;
 
 import com.mihajloandrejic.fitnessapp.helper.Type;
-import com.squareup.picasso.Transformation;
 
 import org.w3c.dom.Text;
 
@@ -82,13 +82,14 @@ public class MainAdapter extends RecyclerView.Adapter {
             case 0:
                 ViewHolderOne viewHolderOne = (ViewHolderOne) holder;
 
-                final int radius = 5;
-                final int margin = 5;
-//                final Transformation transformation = new RoundedCornersTransformation(radius,margin);
-                Picasso.get()
+
+                Glide.with(context)
                         .load(tasks.getWorkouts().getBackground())
+                        .dontTransform()
                         .placeholder(R.drawable.ic_img_placeholder)
                         .into(viewHolderOne.workout_image);
+
+                viewHolderOne.body_workout_text.setText(tasks.getWorkouts().getTitle());
 
 
                 viewHolderOne.workout_icon_first.setBackgroundResource(R.drawable.ic_sat);
@@ -137,10 +138,12 @@ public class MainAdapter extends RecyclerView.Adapter {
 
                 ViewHolderTwo viewHolderTwo = (ViewHolderTwo) holder;
 //
-                Picasso.get()
+                Glide.with(context)
                         .load(tasks.getRecipes().getBackground())
+                        .dontTransform()
                         .placeholder(R.drawable.ic_img_placeholder)
                         .into(viewHolderTwo.body_recipe_image);
+                viewHolderTwo.body_recipe_text.setText(tasks.getRecipes().getTitle());
                 break;
             case 2:
 
@@ -148,8 +151,9 @@ public class MainAdapter extends RecyclerView.Adapter {
 //
 
 
-                Picasso.get()
+                Glide.with(context)
                         .load(tasks.getMindset().getBackground())
+                        .dontTransform()
                         .placeholder(R.drawable.ic_img_placeholder)
                         .into(viewHolderThree.body_mindset_image);
 
@@ -197,11 +201,13 @@ public class MainAdapter extends RecyclerView.Adapter {
         LinearLayout pair4;
 
         TextView workout_icon_first_about;
-        ImageView workout_icon_first;
         TextView workout_icon_second_about;
         TextView workout_icon_third_about;
         TextView workout_icon_fourth_about;
+        TextView body_workout_text;
 
+
+        ImageView workout_icon_first;
         ImageView workout_image;
         ImageView body_recipe_image;
 
@@ -224,6 +230,8 @@ public class MainAdapter extends RecyclerView.Adapter {
             workout_icon_third_about = itemView.findViewById(R.id.workout_icon_third_about);
             workout_icon_fourth_about = itemView.findViewById(R.id.workout_icon_fourth_about);
 
+            body_workout_text = itemView.findViewById(R.id.body_workout_text);
+
         }
     }
 
@@ -232,12 +240,14 @@ public class MainAdapter extends RecyclerView.Adapter {
 
 
         ImageView body_recipe_image;
+        TextView body_recipe_text;
 
 
         public ViewHolderTwo(@NonNull View itemView) {
             super(itemView);
 
             body_recipe_image = itemView.findViewById(R.id.body_recipe_image);
+            body_recipe_text = itemView.findViewById(R.id.body_recipe_text);
         }
     }
 

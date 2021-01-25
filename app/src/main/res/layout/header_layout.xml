@@ -9,18 +9,26 @@
     android:background="@drawable/layout_bg"
     >
 
-    <ImageView
+    <androidx.cardview.widget.CardView
+
+        android:layout_margin="12dp"
         android:id="@+id/header_userImage"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.08"
-        app:layout_constraintVertical_bias="0.1"
-        android:layout_marginTop="8dp"
+        app:cardCornerRadius="6dp"
+        >
+
+    <ImageView
+        android:id="@+id/header_userImage1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         />
+
+    </androidx.cardview.widget.CardView>
+
+
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/material_points"
@@ -31,12 +39,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="@+id/header_userImage"
         app:layout_constraintVertical_bias="0.4"
-
-
-
         app:icon="@drawable/ic_fire"
         app:iconTint="@color/fill_color"
         app:iconSize="15dp"
+        app:cornerRadius="8dp"
         android:textColor="@color/fill_color"
         app:backgroundTint="@color/fill_color_light"
         android:text="1000"/>

@@ -31,6 +31,14 @@
 
         </RelativeLayout>
 
+    <TextView
+        android:id="@+id/placeholder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="MILOSEEEE AAA SVEE"
+        android:visibility="gone"
+        />
+
     <com.agrawalsuneet.dotsloader.loaders.LazyLoader
         android:id="@+id/loader"
         android:layout_gravity="center"

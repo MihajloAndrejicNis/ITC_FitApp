@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -20,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.agrawalsuneet.dotsloader.loaders.LazyLoader;
+import com.bumptech.glide.Glide;
 import com.google.android.material.button.MaterialButton;
 import com.google.gson.Gson;
 import com.mihajloandrejic.fitnessapp.adapters.MainAdapter;
@@ -29,11 +31,9 @@ import com.mihajloandrejic.fitnessapp.datamodels.Events;
 import com.mihajloandrejic.fitnessapp.datamodels.Tasks;
 import com.mihajloandrejic.fitnessapp.datamodels.Tip;
 import com.mihajloandrejic.fitnessapp.datamodels.User;
-import com.mihajloandrejic.fitnessapp.helper.RoundedCornersTransform;
 import com.mihajloandrejic.fitnessapp.helper.Type;
 import com.mihajloandrejic.fitnessapp.netutils.ApiInterface;
 import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Transformation;
 
 import org.json.JSONObject;
 
@@ -74,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
     private MaterialButton fridayBtn;
     private MaterialButton saturdayBtn;
     private MaterialButton sundayBtn;
+    private MaterialButton previousBtn = null;
 
     private String jsonUser;
     private String jsonEvents;
@@ -99,7 +100,11 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
+
     RecyclerView rvMain;
+
+    TextView placeholder;
 
 
 //    imageView.setColorFilter(getResources().getColor(android.R.color.black), PorterDuff.Mode.SRC_IN); za menjanje boje kruga ()
@@ -114,6 +119,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
          context = this;
+
+         previousBtn = null;
 
         Calendar calendar = Calendar.getInstance();
         dayC = calendar.get(Calendar.DAY_OF_WEEK);
@@ -149,6 +156,8 @@ public class MainActivity extends AppCompatActivity {
         initEventsRv();
 
 
+
+
         for (int i = 0; i < events.getEvents().size() ; i++)
         {
         int id = events.getEvents().get(i).getEventId();
@@ -179,100 +188,160 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+        mondayBtn.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.no_event_no_completed));
+        tuesdayBtn.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.no_event_no_completed));
+        wednesdayBtn.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.no_event_no_completed));
+        thursdayBtn.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.no_event_no_completed));
+        fridayBtn.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.no_event_no_completed));
+        saturdayBtn.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.no_event_no_completed));
+        sundayBtn.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.no_event_no_completed));
+
+        if (taskEvent1.isCompleted()) {
+            //pon
+            mondayBtn.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.fill_color));
+        } else {
+            mondayBtn.setTextColor(getResources().getColor(R.color.no_completed_text));
+            mondayBtn.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.no_event_no_completed));
+        }
+
+        if (taskEvent2.isCompleted()) {
+            //cet
+            thursdayBtn.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.fill_color));
+        } else {
+            thursdayBtn.setTextColor(getResources().getColor(R.color.no_completed_text));
+            thursdayBtn.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.no_event_no_completed));
+        }
+
+        if (taskEvent3.isCompleted()) {
+            //ned
+            sundayBtn.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.fill_color));
+        } else {
+            sundayBtn.setTextColor(getResources().getColor(R.color.no_completed_text));
+            sundayBtn.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.no_event_no_completed));
+        }
+
         switch (dayC) {
 
             case Calendar.MONDAY:
                 headerDay.setText("Monday");
+                setColorClicked(mondayBtn);
                 initTasksRv(mondayId);
                 break;
             case Calendar.TUESDAY:
                 headerDay.setText("Tuesday");
+                setColorClicked(tuesdayBtn);
                 initTasksRv(tuesdayId);
                 break;
             case Calendar.WEDNESDAY:
                 headerDay.setText("Wednesday");
+                setColorClicked(wednesdayBtn);
                 initTasksRv(wednesdayId);
                 break;
             case Calendar.THURSDAY:
                 headerDay.setText("Thursday");
+                setColorClicked(thursdayBtn);
                 initTasksRv(thursdayId);
                 break;
             case Calendar.FRIDAY:
                 headerDay.setText("Friday");
+                setColorClicked(fridayBtn);
                 initTasksRv(fridayId);
                 break;
             case Calendar.SATURDAY:
                 headerDay.setText("Saturday");
+                setColorClicked(saturdayBtn);
                 initTasksRv(saturdayId);
                 break;
             case Calendar.SUNDAY:
                 headerDay.setText("Sunday");
+                setColorClicked(sundayBtn);
                 initTasksRv(sundayId);
-                sundayBtn.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.no_event_no_completed));
-                sundayBtn.setTextColor(getResources().getColor(R.color.black));
                 break;
 
         }
 
         mondayBtn.setOnClickListener(v -> {
             headerDay.setText("Monday");
+            setColorClicked(mondayBtn);
             initTasksRv(mondayId);
-            if (tasks.isCompleted())
-            {
-                mondayBtn.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.fill_color));
-            }
-            else
-            {
-                mondayBtn.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.fill_color_light));
-
-            }
         });
 
         tuesdayBtn.setOnClickListener(v ->{
 
-                headerDay.setText("Tuesday");
-                initTasksRv(tuesdayId);
-            if (tasks.isCompleted())
-            {
-                tuesdayBtn.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.completed));
-            }
-            else
-            {
-                tuesdayBtn.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.no_event_no_completed));
+            headerDay.setText("Tuesday");
+            setColorClicked(tuesdayBtn);
+            initTasksRv(tuesdayId);
 
-            }
         });
 
         wednesdayBtn.setOnClickListener(v -> {
-                headerDay.setText("Wednesday");
-                initTasksRv(wednesdayId);
+
+            headerDay.setText("Wednesday");
+            setColorClicked(wednesdayBtn);
+            initTasksRv(wednesdayId);
+
         });
 
         thursdayBtn.setOnClickListener(v ->{
-                headerDay.setText("Thursday");
-                initTasksRv(thursdayId);
+
+            headerDay.setText("Thursday");
+            setColorClicked(thursdayBtn);
+            initTasksRv(thursdayId);
         });
 
         fridayBtn.setOnClickListener(v ->{
-                headerDay.setText("Friday");
-                initTasksRv(fridayId);
-    });
+
+            headerDay.setText("Friday");
+            setColorClicked(fridayBtn);
+            initTasksRv(fridayId);
+
+        });
+
         saturdayBtn.setOnClickListener(v ->{
-                headerDay.setText("Saturday");
-                initTasksRv(saturdayId);
-    });
+
+            headerDay.setText("Saturday");
+            setColorClicked(saturdayBtn);
+            initTasksRv(saturdayId);
+
+        });
+
         sundayBtn.setOnClickListener(v ->{
-                headerDay.setText("Sunday");
-                initTasksRv(sundayId);
 
-            sundayBtn.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.no_event_no_completed));
-            sundayBtn.setTextColor(getResources().getColor(R.color.white));
-
+            headerDay.setText("Sunday");
+            setColorClicked(sundayBtn);
+            initTasksRv(sundayId);
 
         });
 
 
 
+    }
+
+    ColorStateList strokeColor = null;
+    int strokeWidth = 0;
+    ColorStateList backgroundTintList = null;
+    ColorStateList textColors = null;
+
+    private void setColorClicked(MaterialButton clickBtn) {
+        if (previousBtn != null) {
+
+            previousBtn.setStrokeColor(strokeColor);
+            previousBtn.setStrokeWidth(strokeWidth);
+            previousBtn.setBackgroundTintList(backgroundTintList);
+            previousBtn.setTextColor(textColors);
+        }
+
+        strokeColor = clickBtn.getStrokeColor();
+        strokeWidth = clickBtn.getStrokeWidth();
+        backgroundTintList = clickBtn.getBackgroundTintList();
+        textColors = clickBtn.getTextColors();
+
+        previousBtn = clickBtn;
+
+        clickBtn.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.fill_color_light));
+        clickBtn.setStrokeColor(ColorStateList.valueOf(getResources().getColor(R.color.fill_color)));
+        clickBtn.setStrokeWidth(10);
+        clickBtn.setTextColor(getResources().getColor(R.color.fill_color));
     }
 
     ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN | ItemTouchHelper.START | ItemTouchHelper.END, 0) {
@@ -283,15 +352,7 @@ public class MainActivity extends AppCompatActivity {
 
             Collections.swap(list, fromPosition, toPosition);
 
-//            ovde moze da sacuva listu, jer je napravljena nova. Samo je pitanje kako ce da zna koju listu kad da uzme...
-//            ta lista koja se cuva Svakako prvo stavimo listu u shared prefs onda ovde izmenimo i on uvek cita izmenjenu
-
-
-
-
             recyclerView.getAdapter().notifyItemMoved(fromPosition, toPosition);
-            recyclerView.getAdapter().notifyItemChanged(fromPosition);
-            recyclerView.getAdapter().notifyItemChanged(toPosition);
             return true;
         }
 
@@ -401,7 +462,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        userImage = findViewById(R.id.header_userImage);
+        userImage = findViewById(R.id.header_userImage1);
         reorderBtn = findViewById(R.id.header_reorder_document);
         messageTime = findViewById(R.id.header_message_time);
         userName = findViewById(R.id.header_userName);
@@ -411,6 +472,7 @@ public class MainActivity extends AppCompatActivity {
         materialPoints = findViewById(R.id.material_points);
         constraintLayout = findViewById(R.id.main_cons);
         lazyLoader = findViewById(R.id.loader);
+        placeholder = findViewById(R.id.placeholder);
 
 //        buttons
         mondayBtn = findViewById(R.id.header_btn_monday);
@@ -421,36 +483,31 @@ public class MainActivity extends AppCompatActivity {
         saturdayBtn = findViewById(R.id.header_btn_saturday);
         sundayBtn = findViewById(R.id.header_btn_sunday);
 
-
     }
 
     private void initUserRv()
     {
 
-                final Transformation transformation = new RoundedCornersTransform();
 
-
-                Picasso.get()
-                        .load(user.getUserImage())
-                        .transform(transformation)
-                        .fit().centerCrop()
-                        .placeholder(R.drawable.ic_img_placeholder)
-                        .into(userImage);
-
+        Picasso.get()
+                .load(user.getUserImage())
+                .fit().centerCrop()
+                .placeholder(R.drawable.ic_img_placeholder)
+                .into(userImage);
 
                 userName.setText(user.getUserName());
                 userLevel.setText(user.getUserLevel());
 
                 calendarBtn.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.fill_color));
-                materialPoints.setBackground(getResources().getDrawable(R.drawable.ic_points_rec));
 
                 calendarBtn.setText(date + month);
                 materialPoints.setText(String.valueOf(user.getUserPoints()));
+                materialPoints.setStrokeColor(ColorStateList.valueOf(getResources().getColor(R.color.fill_color)));
+                materialPoints.setStrokeWidth(6);
                 currentHour(time);
 
                 lazyLoader.setVisibility(View.GONE);
                 constraintLayout.setVisibility(View.VISIBLE);
-
 
     }
 
@@ -468,7 +525,8 @@ public class MainActivity extends AppCompatActivity {
     private void initTasksRv(int eventId)
     {
 
-//        mozda postaviti da u odnosu na koji je dan da onda pali dugmice i taskove
+        rvMain.setVisibility(View.VISIBLE);
+
                 if (eventId == 1)
                 {
                     tasks = taskEvent1;
@@ -481,10 +539,11 @@ public class MainActivity extends AppCompatActivity {
                 {
                     tasks = taskEvent3;
                 }
-                else
+                else if (eventId == 0)
                 {
-                    tasks = taskEvent1;
-                    Toast.makeText(context, "Moram da postavim placeholder-e", Toast.LENGTH_SHORT).show();
+                        placeholder.setVisibility(View.VISIBLE);
+                        rvMain.setVisibility(View.GONE);
+                        return;
                 }
 
                  list = new ArrayList<Type>();
@@ -492,7 +551,6 @@ public class MainActivity extends AppCompatActivity {
                 Tip tip = new Tip(tasks.getWorkoutTip());
                 Completed completed = new Completed(tasks.isCompleted());
 
-//                madelist
 
                 list.add(tasks.getWorkouts());
                 list.add(tasks.getRecipes());
@@ -503,9 +561,6 @@ public class MainActivity extends AppCompatActivity {
                 MainAdapter mainAdapter = new MainAdapter(list, tasks, MainActivity.this);
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(MainActivity.this);
                 rvMain.setLayoutManager(linearLayoutManager);
-
-                DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(MainActivity.this, DividerItemDecoration.VERTICAL);
-                rvMain.addItemDecoration(dividerItemDecoration);
 
                 ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
                 itemTouchHelper.attachToRecyclerView(rvMain);
