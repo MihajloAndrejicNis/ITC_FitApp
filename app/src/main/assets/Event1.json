@@ -1,0 +1,22 @@
+{
+    "workout": {
+        "title": "Fire Me Up Cardio",
+        "background": "https://images.pexels.com/photos/3771815/pexels-photo-3771815.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+        "time": 15,
+        "equipment": [
+            {"item": "mat"},
+            {"item": "scale"}
+        ]
+    },
+    "recipe": {
+        "title:": "Cold Soba Shrimp Salad",
+        "background": "https://images.pexels.com/photos/953710/pexels-photo-953710.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+    },
+    "mindset": {
+        "title:": "Meditation for beginners",
+        "background": "https://images.pexels.com/photos/4431101/pexels-photo-4431101.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+    },
+    "workout_tip": "If you ever feel any pain during an exercise, stop and check to see if you are doing it correctly. Getting an injury...",
+    "completed": true
+    
+}

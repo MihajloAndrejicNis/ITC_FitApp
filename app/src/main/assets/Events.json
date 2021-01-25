@@ -1,0 +1,30 @@
+{
+    "monthly_progress": 18,
+    "weekly_progress": 5, 
+    "events": [
+    {
+        "day": "Monday",
+        "eventId": 1
+    },
+    {
+        "day": "Tuesday"
+    },
+    {
+        "day": "Wendesday"
+    },
+    {
+        "day": "Thursday",
+        "eventId": 2
+    },
+    {
+        "day": "Friday"
+    },
+    {
+        "day": "Saturday"
+    },
+    {
+        "day": "Sunday",
+        "eventId": 3
+    }
+]
+}

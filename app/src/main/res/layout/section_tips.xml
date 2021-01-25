@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tips"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+        <!--  First   -->
+
+
+        <ImageView
+            android:id="@+id/tips_background"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@drawable/ic_tips_background"
+            />
+        <TextView
+            android:id="@+id/tips_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@+id/tips_background"
+            app:layout_constraintEnd_toEndOf="@+id/tips_background"
+            app:layout_constraintTop_toTopOf="@+id/tips_background"
+            android:text="This weeks progress"
+            android:textStyle="bold"
+            app:layout_constraintHorizontal_bias="0.1"
+            android:layout_marginTop="5dp"
+            />
+
+        <TextView
+            android:id="@+id/tips_text1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@+id/tips_background"
+            app:layout_constraintTop_toBottomOf="@+id/tips_title"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="16dp"
+            />
+
+        <TextView
+            android:id="@+id/tips_text2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@+id/tips_background"
+            app:layout_constraintTop_toBottomOf="@+id/tips_text1"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="5dp"
+
+            android:text="4 challenges"
+            />
+
+
+        <!--    Second    -->
+
+
+        <ImageView
+            android:id="@+id/tips_background_second"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/tips_background"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@drawable/ic_tips_background"
+            android:layout_marginTop="20dp"
+            />
+        <TextView
+            android:id="@+id/tips_title_second"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@+id/tips_background_second"
+            app:layout_constraintEnd_toEndOf="@+id/tips_background_second"
+            app:layout_constraintTop_toTopOf="@+id/tips_background_second"
+            android:text="This months progress"
+            android:textStyle="bold"
+            app:layout_constraintHorizontal_bias="0.1"
+            android:layout_marginTop="5dp"
+            />
+
+        <TextView
+            android:id="@+id/tips_text1_second"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@+id/tips_background_second"
+            app:layout_constraintTop_toBottomOf="@+id/tips_title_second"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="16dp"
+            />
+
+        <TextView
+            android:id="@+id/tips_text2_second"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@+id/tips_background_second"
+            app:layout_constraintTop_toBottomOf="@+id/tips_text1_second"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="5dp"
+            android:text="14 challenges"
+            />
+
+        <!--  Third   -->
+
+        <ImageView
+            android:id="@+id/tips_background_third"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/tips_background_second"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@drawable/ic_tips_background"
+            android:layout_marginTop="20dp"
+            />
+        <TextView
+            android:id="@+id/tips_title_third"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@+id/tips_background_third"
+            app:layout_constraintStart_toStartOf="@+id/tips_background_third"
+            app:layout_constraintBottom_toBottomOf="@+id/tips_background_third"
+            app:layout_constraintVertical_bias="0.1"
+            android:layout_marginStart="15dp"
+            android:text="Workout tip!"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/tips_text1_third"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/tips_title_third"
+            app:layout_constraintStart_toStartOf="@+id/tips_background_third"
+            app:layout_constraintBottom_toBottomOf="@+id/tips_background_third"
+            android:text="If you ever feel any pain during an exercise, stop and check to see if you are doing it correctly. Getting an injury..."
+            android:padding="55dp"
+            />
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

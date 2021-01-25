@@ -1,0 +1,18 @@
+{
+    "workout": {
+        "title": "Body Combat",
+        "background": "https://images.pexels.com/photos/927437/pexels-photo-927437.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+        "time": 24
+    },
+    "recipe": {
+        "title:": "Protein pancakes",
+        "background": "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+    },
+    "mindset": {
+        "title:": "Meditation for beginners",
+        "background": "https://images.pexels.com/photos/3326366/pexels-photo-3326366.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+    },
+    "workout_tip": "If you ever feel any pain during an exercise, stop and check to see if you are doing it correctly. Getting an injury...",
+    "completed": false
+    
+}
