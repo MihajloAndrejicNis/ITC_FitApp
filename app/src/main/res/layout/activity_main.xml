@@ -31,11 +31,12 @@
 
         </RelativeLayout>
 
-    <TextView
+    <ImageView
         android:id="@+id/placeholder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="MILOSEEEE AAA SVEE"
+        android:fontFamily="@font/open_sans"
+        android:background="@drawable/rest_day"
         android:visibility="gone"
         />
 

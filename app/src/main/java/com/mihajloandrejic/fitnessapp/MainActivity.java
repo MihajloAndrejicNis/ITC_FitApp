@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
 
     RecyclerView rvMain;
 
-    TextView placeholder;
+    ImageView placeholder;
 
 
 //    imageView.setColorFilter(getResources().getColor(android.R.color.black), PorterDuff.Mode.SRC_IN); za menjanje boje kruga ()
@@ -156,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
         initEventsRv();
 
 
-
+        messageTime.setTextColor(getResources().getColor(R.color.message_color));
 
         for (int i = 0; i < events.getEvents().size() ; i++)
         {
@@ -496,7 +496,9 @@ public class MainActivity extends AppCompatActivity {
                 .into(userImage);
 
                 userName.setText(user.getUserName());
+                userName.setTextColor(getResources().getColor(R.color.username_text_color));
                 userLevel.setText(user.getUserLevel());
+                userLevel.setTextColor(getResources().getColor(R.color.fill_color));
 
                 calendarBtn.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.fill_color));
 

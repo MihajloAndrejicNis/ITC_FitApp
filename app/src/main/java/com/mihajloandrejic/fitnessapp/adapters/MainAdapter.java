@@ -17,6 +17,8 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.MultiTransformation;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.google.android.material.button.MaterialButton;
 import com.mihajloandrejic.fitnessapp.App;
 import com.mihajloandrejic.fitnessapp.R;
@@ -82,6 +84,8 @@ public class MainAdapter extends RecyclerView.Adapter {
             case 0:
                 ViewHolderOne viewHolderOne = (ViewHolderOne) holder;
 
+                viewHolderOne.body_workout_text.setText(tasks.getWorkouts().getTitle());
+
 
                 Glide.with(context)
                         .load(tasks.getWorkouts().getBackground())
@@ -89,7 +93,6 @@ public class MainAdapter extends RecyclerView.Adapter {
                         .placeholder(R.drawable.ic_img_placeholder)
                         .into(viewHolderOne.workout_image);
 
-                viewHolderOne.body_workout_text.setText(tasks.getWorkouts().getTitle());
 
 
                 viewHolderOne.workout_icon_first.setBackgroundResource(R.drawable.ic_sat);

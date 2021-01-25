@@ -34,6 +34,8 @@
         android:id="@+id/material_points"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/open_sans"
+
         app:layout_constraintStart_toStartOf="@+id/header_userImage"
         app:layout_constraintEnd_toEndOf="@+id/header_userImage"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -56,8 +58,8 @@
         app:layout_constraintTop_toTopOf="@+id/header_userImage"
         app:layout_constraintStart_toEndOf="@+id/header_userImage"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.07"
-        android:textSize="13sp"
+        app:layout_constraintHorizontal_bias="0.09"
+        android:textSize="17sp"
         />
 
     <TextView
@@ -65,10 +67,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Clothier Paula "
+        android:textStyle="bold"
+
         app:layout_constraintTop_toBottomOf="@+id/header_message_time"
         app:layout_constraintStart_toEndOf="@+id/header_userImage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.15"
+        android:fontFamily="@font/open_sans"
         android:textSize="28sp"
         android:textColor="@color/username_text_color"
         />
@@ -78,11 +83,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Expert"
+
         app:layout_constraintTop_toBottomOf="@+id/header_userName"
         app:layout_constraintStart_toEndOf="@+id/header_userImage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.07"
-        android:textSize="13sp"
+        android:layout_marginTop="5dp"
+        android:textSize="17sp"
         />
 
     <ImageView
@@ -128,6 +135,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAllCaps="false"
+        android:fontFamily="@font/open_sans"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/header_userImage"
         app:layout_constraintEnd_toEndOf="parent"

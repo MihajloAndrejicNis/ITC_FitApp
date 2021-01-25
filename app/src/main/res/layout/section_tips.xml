@@ -23,6 +23,8 @@
             android:id="@+id/tips_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/open_sans"
+
             app:layout_constraintStart_toStartOf="@+id/tips_background"
             app:layout_constraintEnd_toEndOf="@+id/tips_background"
             app:layout_constraintTop_toTopOf="@+id/tips_background"
@@ -36,6 +38,8 @@
             android:id="@+id/tips_text1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/open_sans"
+
             app:layout_constraintStart_toStartOf="@+id/tips_background"
             app:layout_constraintTop_toBottomOf="@+id/tips_title"
             android:layout_marginStart="15dp"
@@ -46,6 +50,8 @@
             android:id="@+id/tips_text2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/open_sans"
+
             app:layout_constraintStart_toStartOf="@+id/tips_background"
             app:layout_constraintTop_toBottomOf="@+id/tips_text1"
             android:layout_marginStart="15dp"
@@ -72,6 +78,8 @@
             android:id="@+id/tips_title_second"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/open_sans"
+
             app:layout_constraintStart_toStartOf="@+id/tips_background_second"
             app:layout_constraintEnd_toEndOf="@+id/tips_background_second"
             app:layout_constraintTop_toTopOf="@+id/tips_background_second"
@@ -85,6 +93,8 @@
             android:id="@+id/tips_text1_second"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/open_sans"
+
             app:layout_constraintStart_toStartOf="@+id/tips_background_second"
             app:layout_constraintTop_toBottomOf="@+id/tips_title_second"
             android:layout_marginStart="15dp"
@@ -95,6 +105,8 @@
             android:id="@+id/tips_text2_second"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/open_sans"
+
             app:layout_constraintStart_toStartOf="@+id/tips_background_second"
             app:layout_constraintTop_toBottomOf="@+id/tips_text1_second"
             android:layout_marginStart="15dp"
@@ -118,6 +130,8 @@
             android:id="@+id/tips_title_third"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/open_sans"
+
             app:layout_constraintTop_toTopOf="@+id/tips_background_third"
             app:layout_constraintStart_toStartOf="@+id/tips_background_third"
             app:layout_constraintBottom_toBottomOf="@+id/tips_background_third"
@@ -131,6 +145,8 @@
             android:id="@+id/tips_text1_third"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/open_sans"
+
             app:layout_constraintTop_toBottomOf="@+id/tips_title_third"
             app:layout_constraintStart_toStartOf="@+id/tips_background_third"
             app:layout_constraintBottom_toBottomOf="@+id/tips_background_third"

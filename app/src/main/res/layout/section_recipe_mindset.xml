@@ -12,6 +12,7 @@
 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/open_sans"
 
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -74,6 +75,8 @@
             android:textStyle="bold"
             android:textSize="20sp"
             android:gravity="start"
+            android:fontFamily="@font/open_sans"
+
             app:layout_constraintBottom_toBottomOf="@+id/recipe_constr"
             app:layout_constraintStart_toStartOf="@+id/recipe_constr"
             android:layout_marginStart="5dp"
