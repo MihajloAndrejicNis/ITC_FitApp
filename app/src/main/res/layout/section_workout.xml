@@ -8,6 +8,7 @@
     >
 
 
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/kartica_slike"
                 android:layout_width="match_parent"
@@ -25,7 +26,6 @@
 
                 <ImageView
                     android:id="@+id/body_workout_image"
-
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     />

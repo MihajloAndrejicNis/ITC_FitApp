@@ -18,7 +18,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.MultiTransformation;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.request.target.Target;
 import com.google.android.material.button.MaterialButton;
 import com.mihajloandrejic.fitnessapp.App;
 import com.mihajloandrejic.fitnessapp.R;
