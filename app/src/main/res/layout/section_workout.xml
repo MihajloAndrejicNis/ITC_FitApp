@@ -8,6 +8,19 @@
     >
 
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/workout_section"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+
+
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/kartica_slike"
@@ -30,6 +43,18 @@
                     android:layout_height="match_parent"
                     />
             </androidx.cardview.widget.CardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/play_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/workout_section"
+        app:layout_constraintStart_toStartOf="@+id/workout_section"
+        android:layout_marginStart="45dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/ic_play_btn"/>
+
 
 
     <TextView
@@ -40,18 +65,20 @@
         android:fontFamily="@font/open_sans"
 
         android:textStyle="bold"
-        android:textSize="20sp"
+        android:textSize="16sp"
         android:gravity="start"
-        app:layout_constraintBottom_toBottomOf="@+id/kartica_slike"
-        app:layout_constraintStart_toStartOf="@+id/kartica_slike"
-        android:layout_marginStart="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/workout_section"
+        app:layout_constraintStart_toEndOf="@+id/play_btn"
+        android:layout_marginStart="15dp"
+        android:layout_marginBottom="20dp"
+
         />
 
             <include
                 android:id="@+id/body_icons"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/kartica_slike"
+                app:layout_constraintTop_toBottomOf="@+id/workout_section"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
