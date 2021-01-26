@@ -93,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
     private int saturdayId;
     private int sundayId;
     List<Type> list;
+    List<Type> list2;
 
     User user;
     Events events;
@@ -107,10 +108,6 @@ public class MainActivity extends AppCompatActivity {
     ColorStateList backgroundTintList = null;
     ColorStateList textColors = null;
 
-
-    ArrayList<Integer> ids = new ArrayList<>();
-
-    HashMap<Integer,Object > reorder = new HashMap<>();
 
     RecyclerView rvMain;
 
@@ -408,6 +405,7 @@ public class MainActivity extends AppCompatActivity {
         else if (eventId == 3)
         {
             tasks = taskEvent3;
+
         }
         else if (eventId == 0)
         {
@@ -421,8 +419,6 @@ public class MainActivity extends AppCompatActivity {
         Tip tip = new Tip(tasks.getWorkoutTip());
         Completed completed = new Completed(tasks.isCompleted());
 
-        addIds(tip, completed, tasks);
-
         list.add(tasks.getWorkouts());
         list.add(tasks.getRecipes());
         list.add(tasks.getMindset());
@@ -431,6 +427,14 @@ public class MainActivity extends AppCompatActivity {
 
         MainAdapter mainAdapter = new MainAdapter(list, tasks, MainActivity.this);
 
+//        if (list2 != null)
+//        {
+//             mainAdapter = new MainAdapter(list2, tasks, MainActivity.this);
+//        }
+//        else
+//        {
+//         mainAdapter = new MainAdapter(list, tasks, MainActivity.this);
+//        }
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(MainActivity.this);
         rvMain.setLayoutManager(linearLayoutManager);
 
@@ -475,10 +479,11 @@ public class MainActivity extends AppCompatActivity {
             int fromPosition = viewHolder.getAdapterPosition();
             int toPosition =  target.getAdapterPosition();
 
-//
-
-            Collections.swap(ids, fromPosition, toPosition);
             Collections.swap(list, fromPosition, toPosition);
+            list2 = list;
+            Collections.swap(list2, fromPosition, toPosition);
+
+
 
             recyclerView.getAdapter().notifyDataSetChanged();
             recyclerView.getAdapter().notifyItemMoved(fromPosition, toPosition);
@@ -589,22 +594,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-    private void addIds(Tip tip, Completed completed, Tasks tasks) {
-
-        ids.add(Integer.valueOf(tasks.getWorkouts().getType()));
-        ids.add(Integer.valueOf(tasks.getRecipes().getType()));
-        ids.add(Integer.valueOf(tasks.getMindset().getType()));
-        ids.add(Integer.valueOf(tip.getType()));
-        ids.add(Integer.valueOf(completed.getType()));
-
-        reorder.put(Integer.valueOf(tasks.getWorkouts().getType()), tasks.getWorkouts());
-        reorder.put(Integer.valueOf(tasks.getRecipes().getType()) ,tasks.getRecipes());
-        reorder.put(Integer.valueOf(tasks.getMindset().getType()),tasks.getMindset());
-        reorder.put( Integer.valueOf(tip.getType()), tasks.getWorkoutTip());
-        reorder.put( Integer.valueOf(completed.getType()), tasks.isCompleted());
-
-    }
 
     public String loadJSONFromAsset(Activity activity, String fileName) {
         String json = null;
