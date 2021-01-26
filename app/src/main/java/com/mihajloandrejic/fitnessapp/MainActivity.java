@@ -25,6 +25,7 @@ import com.agrawalsuneet.dotsloader.loaders.LazyLoader;
 import com.bumptech.glide.Glide;
 import com.google.android.material.button.MaterialButton;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.mihajloandrejic.fitnessapp.adapters.MainAdapter;
 import com.mihajloandrejic.fitnessapp.datamodels.Completed;
 import com.mihajloandrejic.fitnessapp.datamodels.Event;
@@ -32,6 +33,7 @@ import com.mihajloandrejic.fitnessapp.datamodels.Events;
 import com.mihajloandrejic.fitnessapp.datamodels.Tasks;
 import com.mihajloandrejic.fitnessapp.datamodels.Tip;
 import com.mihajloandrejic.fitnessapp.datamodels.User;
+import com.mihajloandrejic.fitnessapp.datamodels.Workout;
 import com.mihajloandrejic.fitnessapp.helper.Type;
 import com.mihajloandrejic.fitnessapp.netutils.ApiInterface;
 import com.squareup.picasso.Picasso;
@@ -113,6 +115,22 @@ public class MainActivity extends AppCompatActivity {
 
     ImageView placeholder;
 
+    private static SharedPreferences sharedPreferences;
+
+    private static SharedPreferences.Editor editor;
+
+    public <T> void setList(String key, List<T> list) {
+        Gson gson = new Gson();
+        String json = gson.toJson(list);
+
+        set(key, json);
+    }
+
+    public static void set(String key, String value) {
+        editor.putString(key, value);
+        editor.commit();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -124,7 +142,8 @@ public class MainActivity extends AppCompatActivity {
 
          previousBtn = null;
 
-
+          sharedPreferences = context.getSharedPreferences("reorder", Context.MODE_PRIVATE);
+          editor = sharedPreferences.edit();
 
         Calendar calendar = Calendar.getInstance();
         dayC = calendar.get(Calendar.DAY_OF_WEEK);
@@ -414,6 +433,8 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
+
+
         list = new ArrayList<Type>();
 
         Tip tip = new Tip(tasks.getWorkoutTip());
@@ -427,14 +448,6 @@ public class MainActivity extends AppCompatActivity {
 
         MainAdapter mainAdapter = new MainAdapter(list, tasks, MainActivity.this);
 
-//        if (list2 != null)
-//        {
-//             mainAdapter = new MainAdapter(list2, tasks, MainActivity.this);
-//        }
-//        else
-//        {
-//         mainAdapter = new MainAdapter(list, tasks, MainActivity.this);
-//        }
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(MainActivity.this);
         rvMain.setLayoutManager(linearLayoutManager);
 
@@ -480,8 +493,8 @@ public class MainActivity extends AppCompatActivity {
             int toPosition =  target.getAdapterPosition();
 
             Collections.swap(list, fromPosition, toPosition);
-            list2 = list;
-            Collections.swap(list2, fromPosition, toPosition);
+
+//            setList("reorder", list);
 
 
 
