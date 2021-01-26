@@ -102,13 +102,19 @@ public class MainActivity extends AppCompatActivity {
     Tasks taskEvent3;
 
 
-    Map<String,ArrayList<Integer>> order = new HashMap<>();
+    ColorStateList strokeColor = null;
+    int strokeWidth = 0;
+    ColorStateList backgroundTintList = null;
+    ColorStateList textColors = null;
+
+
+    ArrayList<Integer> ids = new ArrayList<>();
+
+    HashMap<Integer,Object > reorder = new HashMap<>();
 
     RecyclerView rvMain;
 
     ImageView placeholder;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -313,15 +319,131 @@ public class MainActivity extends AppCompatActivity {
             initTasksRv(sundayId);
 
         });
-
+        reorderBtn.setOnClickListener(v -> {
+            Toast.makeText(context, "You can reorder elements but not save your order...", Toast.LENGTH_SHORT).show();
+        });
+        
 
 
     }
 
-    ColorStateList strokeColor = null;
-    int strokeWidth = 0;
-    ColorStateList backgroundTintList = null;
-    ColorStateList textColors = null;
+
+
+    private void initViews() {
+        userImage = findViewById(R.id.header_userImage1);
+        reorderBtn = findViewById(R.id.header_reorder_document);
+        messageTime = findViewById(R.id.header_message_time);
+        userName = findViewById(R.id.header_userName);
+        userLevel = findViewById(R.id.header_userLevel);
+        headerDay = findViewById(R.id.header_day);
+        calendarBtn = findViewById(R.id.header_calendar);
+        materialPoints = findViewById(R.id.material_points);
+        constraintLayout = findViewById(R.id.main_cons);
+        lazyLoader = findViewById(R.id.loader);
+        placeholder = findViewById(R.id.placeholder);
+
+//        buttons
+        mondayBtn = findViewById(R.id.header_btn_monday);
+        tuesdayBtn = findViewById(R.id.header_btn_tuesday);
+        wednesdayBtn = findViewById(R.id.header_btn_wednesday);
+        thursdayBtn = findViewById(R.id.header_btn_thursday);
+        fridayBtn = findViewById(R.id.header_btn_friday);
+        saturdayBtn = findViewById(R.id.header_btn_saturday);
+        sundayBtn = findViewById(R.id.header_btn_sunday);
+
+    }
+
+
+    private void initUserRv()
+    {
+        Picasso.get()
+                .load(user.getUserImage())
+                .fit().centerCrop()
+                .placeholder(R.drawable.ic_img_placeholder)
+                .into(userImage);
+
+        userName.setText(user.getUserName());
+        userName.setTextColor(getResources().getColor(R.color.username_text_color));
+
+        userLevel.setText(user.getUserLevel());
+        userLevel.setTextColor(getResources().getColor(R.color.fill_color));
+
+        calendarBtn.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.fill_color));
+        calendarBtn.setText(date + month);
+
+        materialPoints.setText(String.valueOf(user.getUserPoints()));
+        materialPoints.setStrokeColor(ColorStateList.valueOf(getResources().getColor(R.color.fill_color)));
+        materialPoints.setStrokeWidth(6);
+
+        currentHour(time);
+
+        lazyLoader.setVisibility(View.GONE);
+        constraintLayout.setVisibility(View.VISIBLE);
+
+    }
+
+    private void initEventsRv()
+    {
+        List<Event> eventsList = events.getEvents();
+
+        App.setWeeklyP(events.getWeeklyProgress());
+        App.setMonthlyP(events.getMonthlyProgress());
+
+    }
+
+
+
+    private void initTasksRv(int eventId)
+    {
+        rvMain.setVisibility(View.VISIBLE);
+
+        if (eventId == 1)
+        {
+            tasks = taskEvent1;
+        }
+        else if (eventId == 2)
+        {
+            tasks = taskEvent2;
+        }
+        else if (eventId == 3)
+        {
+            tasks = taskEvent3;
+        }
+        else if (eventId == 0)
+        {
+            placeholder.setVisibility(View.VISIBLE);
+            rvMain.setVisibility(View.GONE);
+            return;
+        }
+
+        list = new ArrayList<Type>();
+
+        Tip tip = new Tip(tasks.getWorkoutTip());
+        Completed completed = new Completed(tasks.isCompleted());
+
+        addIds(tip, completed, tasks);
+
+        list.add(tasks.getWorkouts());
+        list.add(tasks.getRecipes());
+        list.add(tasks.getMindset());
+        list.add(tip);
+        list.add(completed);
+
+        MainAdapter mainAdapter = new MainAdapter(list, tasks, MainActivity.this);
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(MainActivity.this);
+        rvMain.setLayoutManager(linearLayoutManager);
+
+        rvMain.setHasFixedSize(true);
+
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
+        itemTouchHelper.attachToRecyclerView(rvMain);
+
+        rvMain.setAdapter(mainAdapter);
+
+    }
+
+
 
     private void setColorClicked(MaterialButton clickBtn) {
         if (previousBtn != null) {
@@ -345,15 +467,18 @@ public class MainActivity extends AppCompatActivity {
         clickBtn.setTextColor(getResources().getColor(R.color.fill_color));
     }
 
+//    callback za reorder
+
     ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN | ItemTouchHelper.START | ItemTouchHelper.END, 0) {
         @Override
         public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
             int fromPosition = viewHolder.getAdapterPosition();
             int toPosition =  target.getAdapterPosition();
 
+//
+
+            Collections.swap(ids, fromPosition, toPosition);
             Collections.swap(list, fromPosition, toPosition);
-
-
 
             recyclerView.getAdapter().notifyDataSetChanged();
             recyclerView.getAdapter().notifyItemMoved(fromPosition, toPosition);
@@ -365,6 +490,7 @@ public class MainActivity extends AppCompatActivity {
 
         }
     };
+
 
     private void currentHour(int time)
     {
@@ -380,7 +506,6 @@ public class MainActivity extends AppCompatActivity {
                 messageTime.setText("Good Morning ");
             }
         }
-
         for (int part : afternoon)
         {
             if (time == part)
@@ -388,7 +513,6 @@ public class MainActivity extends AppCompatActivity {
                 messageTime.setText("Good Afternoon ");
             }
         }
-
         for (int part : evening)
         {
             if (time == part)
@@ -396,7 +520,6 @@ public class MainActivity extends AppCompatActivity {
                 messageTime.setText("Good Evening ");
             }
         }
-
     }
 
     private void currentDay(int dayC)
@@ -465,122 +588,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void initViews() {
-        userImage = findViewById(R.id.header_userImage1);
-        reorderBtn = findViewById(R.id.header_reorder_document);
-        messageTime = findViewById(R.id.header_message_time);
-        userName = findViewById(R.id.header_userName);
-        userLevel = findViewById(R.id.header_userLevel);
-        headerDay = findViewById(R.id.header_day);
-        calendarBtn = findViewById(R.id.header_calendar);
-        materialPoints = findViewById(R.id.material_points);
-        constraintLayout = findViewById(R.id.main_cons);
-        lazyLoader = findViewById(R.id.loader);
-        placeholder = findViewById(R.id.placeholder);
 
-//        buttons
-        mondayBtn = findViewById(R.id.header_btn_monday);
-        tuesdayBtn = findViewById(R.id.header_btn_tuesday);
-        wednesdayBtn = findViewById(R.id.header_btn_wednesday);
-        thursdayBtn = findViewById(R.id.header_btn_thursday);
-        fridayBtn = findViewById(R.id.header_btn_friday);
-        saturdayBtn = findViewById(R.id.header_btn_saturday);
-        sundayBtn = findViewById(R.id.header_btn_sunday);
-
-    }
-
-    private void initUserRv()
-    {
-
-
-        Picasso.get()
-                .load(user.getUserImage())
-                .fit().centerCrop()
-                .placeholder(R.drawable.ic_img_placeholder)
-                .into(userImage);
-
-                userName.setText(user.getUserName());
-                userName.setTextColor(getResources().getColor(R.color.username_text_color));
-                userLevel.setText(user.getUserLevel());
-                userLevel.setTextColor(getResources().getColor(R.color.fill_color));
-
-                calendarBtn.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.fill_color));
-
-                calendarBtn.setText(date + month);
-                materialPoints.setText(String.valueOf(user.getUserPoints()));
-                materialPoints.setStrokeColor(ColorStateList.valueOf(getResources().getColor(R.color.fill_color)));
-                materialPoints.setStrokeWidth(6);
-                currentHour(time);
-
-                lazyLoader.setVisibility(View.GONE);
-                constraintLayout.setVisibility(View.VISIBLE);
-
-    }
-
-    private void initEventsRv()
-    {
-                List<Event> eventsList = events.getEvents();
-
-                App.setWeeklyP(events.getWeeklyProgress());
-                App.setMonthlyP(events.getMonthlyProgress());
-
-            }
-
-
-
-    private void initTasksRv(int eventId)
-    {
-
-        rvMain.setVisibility(View.VISIBLE);
-
-                if (eventId == 1)
-                {
-                    tasks = taskEvent1;
-                }
-                else if (eventId == 2)
-                {
-                    tasks = taskEvent2;
-                }
-                else if (eventId == 3)
-                {
-                    tasks = taskEvent3;
-                }
-                else if (eventId == 0)
-                {
-                        placeholder.setVisibility(View.VISIBLE);
-                        rvMain.setVisibility(View.GONE);
-                        return;
-                }
-
-                 list = new ArrayList<Type>();
-
-                Tip tip = new Tip(tasks.getWorkoutTip());
-                Completed completed = new Completed(tasks.isCompleted());
-
-                addIds(tip, completed, tasks);
-
-                list.add(tasks.getWorkouts());
-                list.add(tasks.getRecipes());
-                list.add(tasks.getMindset());
-                list.add(tip);
-                list.add(completed);
-
-                MainAdapter mainAdapter = new MainAdapter(list, tasks, MainActivity.this);
-                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(MainActivity.this);
-                rvMain.setLayoutManager(linearLayoutManager);
-                rvMain.setHasFixedSize(true);
-
-                ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
-                itemTouchHelper.attachToRecyclerView(rvMain);
-
-                rvMain.setAdapter(mainAdapter);
-
-            }
 
     private void addIds(Tip tip, Completed completed, Tasks tasks) {
-
-        ArrayList<Integer> ids = new ArrayList<>();
-
 
         ids.add(Integer.valueOf(tasks.getWorkouts().getType()));
         ids.add(Integer.valueOf(tasks.getRecipes().getType()));
@@ -588,8 +598,11 @@ public class MainActivity extends AppCompatActivity {
         ids.add(Integer.valueOf(tip.getType()));
         ids.add(Integer.valueOf(completed.getType()));
 
-
-        order.put("order",ids);
+        reorder.put(Integer.valueOf(tasks.getWorkouts().getType()), tasks.getWorkouts());
+        reorder.put(Integer.valueOf(tasks.getRecipes().getType()) ,tasks.getRecipes());
+        reorder.put(Integer.valueOf(tasks.getMindset().getType()),tasks.getMindset());
+        reorder.put( Integer.valueOf(tip.getType()), tasks.getWorkoutTip());
+        reorder.put( Integer.valueOf(completed.getType()), tasks.isCompleted());
 
     }
 
@@ -608,6 +621,5 @@ public class MainActivity extends AppCompatActivity {
         }
         return json;
     }
-
 
 }

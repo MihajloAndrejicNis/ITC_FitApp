@@ -14,9 +14,6 @@
         android:layout_height="wrap_content"
         layout="@layout/header_layout"
         />
-<!--    android:background="@color/white"
-    android:foreground="?selectableItemBackground"-->
-
 
         <RelativeLayout
             android:id="@+id/sections_layout"
@@ -55,8 +52,5 @@
         app:lazyloader_secondDelayDur="300"
         app:lazyloader_secondDotColor="@color/fill_color"
         app:lazyloader_thirdDotColor="@color/fill_color_light" />
-
-
-
 
 </LinearLayout>

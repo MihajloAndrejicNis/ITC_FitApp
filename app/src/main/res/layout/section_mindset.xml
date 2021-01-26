@@ -18,7 +18,6 @@
                     android:text="Featured Mindset"
                     android:textSize="26dp"
 
-
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="5dp"/>
@@ -27,6 +26,7 @@
                     android:id="@+id/mindset_constr"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+
                     app:layout_constraintTop_toBottomOf="@+id/body_mindset_title"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -36,7 +36,6 @@
                     android:layout_marginBottom="10dp"
                     android:layout_marginStart="30dp"
                     android:layout_marginEnd="30dp"
-
                         >
 
                         <androidx.cardview.widget.CardView
@@ -47,9 +46,7 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintBottom_toBottomOf="parent"
-
                             app:cardCornerRadius="15dp">
-
 
                                 <ImageView
                                     android:id="@+id/body_mindset_image"
@@ -75,6 +72,5 @@
                     android:layout_marginBottom="20dp"
 
                     />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

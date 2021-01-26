@@ -41,7 +41,6 @@ public class MainAdapter extends RecyclerView.Adapter {
     private Context context;
     private List<Type> types;
     String TAG = "test";
-
     View view;
 
     public MainAdapter(List<Type> types, Tasks tasks, Context context) {
@@ -83,11 +82,12 @@ public class MainAdapter extends RecyclerView.Adapter {
         int mode = types.get(position).getType();
         switch (mode)
         {
+            //workout
             case 0:
                 ViewHolderOne viewHolderOne = (ViewHolderOne) holder;
-
                 viewHolderOne.body_workout_text.setText(tasks.getWorkouts().getTitle());
-
+                viewHolderOne.workout_icon_first.setBackgroundResource(R.drawable.ic_sat);
+                viewHolderOne.workout_icon_first_about.setText(tasks.getWorkouts().getTime()+"min");
 
                 Glide.with(context)
                         .load(tasks.getWorkouts().getBackground())
@@ -95,17 +95,12 @@ public class MainAdapter extends RecyclerView.Adapter {
                         .placeholder(R.drawable.ic_img_placeholder)
                         .into(viewHolderOne.workout_image);
 
-
-
-                viewHolderOne.workout_icon_first.setBackgroundResource(R.drawable.ic_sat);
-                viewHolderOne.workout_icon_first_about.setText(tasks.getWorkouts().getTime()+"min");
-
                 List<Equipment> equipmentList = tasks.getWorkouts().getEquipment();
+
                 if (equipmentList != null)
                 {
                     for (int i = 0; i < equipmentList.size(); i++)
                     {
-
                         Equipment equipment = equipmentList.get(i);
                         if (equipment != null)
                         {
@@ -137,35 +132,34 @@ public class MainAdapter extends RecyclerView.Adapter {
                 {
                     viewHolderOne.workout_icon_first.setBackgroundResource(R.drawable.ic_sat);
                     viewHolderOne.workout_icon_first_about.setText(tasks.getWorkouts().getTime()+"min");
-//                    viewHolderOne.pair1.setVisibility(View.GONE);
                 }
 
                 break;
+
+            //recipe
             case 1:
 
                 ViewHolderTwo viewHolderTwo = (ViewHolderTwo) holder;
-//
+                viewHolderTwo.body_recipe_text.setText(tasks.getRecipes().getTitle());
                 Glide.with(context)
                         .load(tasks.getRecipes().getBackground())
                         .dontTransform()
                         .placeholder(R.drawable.ic_img_placeholder)
                         .into(viewHolderTwo.body_recipe_image);
-                viewHolderTwo.body_recipe_text.setText(tasks.getRecipes().getTitle());
                 break;
+            //mindset
             case 2:
 
                 ViewHolderThree viewHolderThree = (ViewHolderThree) holder;
-//
-
-
+                viewHolderThree.body_mindset_text.setText(tasks.getMindset().getTitle());
                 Glide.with(context)
                         .load(tasks.getMindset().getBackground())
                         .dontTransform()
                         .placeholder(R.drawable.ic_img_placeholder)
                         .into(viewHolderThree.body_mindset_image);
 
-                viewHolderThree.body_mindset_text.setText(tasks.getMindset().getTitle());
                 break;
+            //workout tips
             case 3:
                 ViewHolderFour viewHolderFour = (ViewHolderFour) holder;
 
@@ -174,16 +168,12 @@ public class MainAdapter extends RecyclerView.Adapter {
                 viewHolderFour.tips_text1_second.setText(App.getMonthlyP()+ " completed programs");
 
                 break;
+            //button
             case 4:
-
 //                ViewHolderFive viewHolderFive = (ViewHolderFive) holder;
                 break;
         }
-
-
     }
-
-
 
     @Override
     public int getItemCount() {
@@ -192,13 +182,10 @@ public class MainAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemViewType(int position) {
-
-
         return types.get(position).getType();
-
     }
 
-
+    //workout
     public class ViewHolderOne extends RecyclerView.ViewHolder {
 
 
@@ -242,7 +229,7 @@ public class MainAdapter extends RecyclerView.Adapter {
         }
     }
 
-
+    //recipe
     public class ViewHolderTwo extends RecyclerView.ViewHolder {
 
 
@@ -257,7 +244,7 @@ public class MainAdapter extends RecyclerView.Adapter {
             body_recipe_text = itemView.findViewById(R.id.body_recipe_text);
         }
     }
-
+    //mindset
     public class ViewHolderThree extends RecyclerView.ViewHolder {
 
 
@@ -273,6 +260,7 @@ public class MainAdapter extends RecyclerView.Adapter {
         }
     }
 
+    //workout tips
     public class ViewHolderFour extends RecyclerView.ViewHolder {
 
         TextView tips_text1_third;
@@ -288,6 +276,7 @@ public class MainAdapter extends RecyclerView.Adapter {
         }
     }
 
+    //button
     public class ViewHolderFive extends RecyclerView.ViewHolder {
 
 

@@ -29,6 +29,7 @@
             app:layout_constraintEnd_toEndOf="@+id/tips_background"
             app:layout_constraintTop_toTopOf="@+id/tips_background"
             android:text="This weeks progress"
+            android:textColor="@color/username_text_color"
             android:textStyle="bold"
             app:layout_constraintHorizontal_bias="0.1"
             android:layout_marginTop="5dp"
@@ -39,6 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/open_sans"
+            android:textColor="@color/username_text_color"
 
             app:layout_constraintStart_toStartOf="@+id/tips_background"
             app:layout_constraintTop_toBottomOf="@+id/tips_title"
@@ -51,6 +53,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/open_sans"
+            android:textColor="@color/username_text_color"
 
             app:layout_constraintStart_toStartOf="@+id/tips_background"
             app:layout_constraintTop_toBottomOf="@+id/tips_text1"
@@ -79,6 +82,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/open_sans"
+            android:textColor="@color/username_text_color"
 
             app:layout_constraintStart_toStartOf="@+id/tips_background_second"
             app:layout_constraintEnd_toEndOf="@+id/tips_background_second"
@@ -94,6 +98,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/open_sans"
+            android:textColor="@color/username_text_color"
 
             app:layout_constraintStart_toStartOf="@+id/tips_background_second"
             app:layout_constraintTop_toBottomOf="@+id/tips_title_second"
@@ -106,6 +111,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/open_sans"
+            android:textColor="@color/username_text_color"
 
             app:layout_constraintStart_toStartOf="@+id/tips_background_second"
             app:layout_constraintTop_toBottomOf="@+id/tips_text1_second"
@@ -131,6 +137,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/open_sans"
+            android:textColor="@color/username_text_color"
 
             app:layout_constraintTop_toTopOf="@+id/tips_background_third"
             app:layout_constraintStart_toStartOf="@+id/tips_background_third"
@@ -146,6 +153,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/open_sans"
+            android:textColor="@color/username_text_color"
 
             app:layout_constraintTop_toBottomOf="@+id/tips_title_third"
             app:layout_constraintStart_toStartOf="@+id/tips_background_third"

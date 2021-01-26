@@ -6,9 +6,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     >
-
-
-            <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/workout_section"
 
                 android:layout_width="match_parent"
@@ -18,8 +16,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent">
-
-
 
 
             <androidx.cardview.widget.CardView
@@ -43,7 +39,7 @@
                     android:layout_height="match_parent"
                     />
             </androidx.cardview.widget.CardView>
-            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView
         android:id="@+id/play_btn"
@@ -54,8 +50,6 @@
         android:layout_marginStart="45dp"
         android:layout_marginBottom="20dp"
         android:background="@drawable/ic_play_btn"/>
-
-
 
     <TextView
         android:id="@+id/body_workout_text"
@@ -85,11 +79,5 @@
                 layout="@layout/body_workout_layout"
 
                 />
-
-
-
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

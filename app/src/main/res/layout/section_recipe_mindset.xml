@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-
         <TextView
             android:id="@+id/body_recipe_title"
 
@@ -24,7 +23,6 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="5dp"/>
 
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/recipe_constr"
             android:layout_width="match_parent"
@@ -39,31 +37,29 @@
             android:layout_marginBottom="10dp"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
-            >
+                    >
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/recipe_card"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/recipe_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
 
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
 
-
-            app:cardCornerRadius="15dp">
-
-
-        <ImageView
-            android:id="@+id/body_recipe_image"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-
-            />
+                    app:cardCornerRadius="15dp">
 
 
-        </androidx.cardview.widget.CardView>
+                <ImageView
+                    android:id="@+id/body_recipe_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    />
+
+
+                </androidx.cardview.widget.CardView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
         <TextView
@@ -80,8 +76,5 @@
             android:layout_marginStart="20dp"
             android:layout_marginBottom="20dp"
             />
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
