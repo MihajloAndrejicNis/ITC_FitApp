@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.util.Log;
@@ -43,7 +44,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -99,17 +102,13 @@ public class MainActivity extends AppCompatActivity {
     Tasks taskEvent3;
 
 
-
-
+    Map<String,ArrayList<Integer>> order = new HashMap<>();
 
     RecyclerView rvMain;
 
     ImageView placeholder;
 
 
-//    imageView.setColorFilter(getResources().getColor(android.R.color.black), PorterDuff.Mode.SRC_IN); za menjanje boje kruga ()
-
-//    materialButton.setBackgroundTintList(ContextCompat.getColorStateList(this@MyActivity, R.color.myCustomColor)); za menjanje pozadine dugmeta
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,6 +120,8 @@ public class MainActivity extends AppCompatActivity {
          context = this;
 
          previousBtn = null;
+
+
 
         Calendar calendar = Calendar.getInstance();
         dayC = calendar.get(Calendar.DAY_OF_WEEK);
@@ -352,6 +353,9 @@ public class MainActivity extends AppCompatActivity {
 
             Collections.swap(list, fromPosition, toPosition);
 
+
+
+            recyclerView.getAdapter().notifyDataSetChanged();
             recyclerView.getAdapter().notifyItemMoved(fromPosition, toPosition);
             return true;
         }
@@ -553,6 +557,7 @@ public class MainActivity extends AppCompatActivity {
                 Tip tip = new Tip(tasks.getWorkoutTip());
                 Completed completed = new Completed(tasks.isCompleted());
 
+                addIds(tip, completed, tasks);
 
                 list.add(tasks.getWorkouts());
                 list.add(tasks.getRecipes());
@@ -571,6 +576,22 @@ public class MainActivity extends AppCompatActivity {
                 rvMain.setAdapter(mainAdapter);
 
             }
+
+    private void addIds(Tip tip, Completed completed, Tasks tasks) {
+
+        ArrayList<Integer> ids = new ArrayList<>();
+
+
+        ids.add(Integer.valueOf(tasks.getWorkouts().getType()));
+        ids.add(Integer.valueOf(tasks.getRecipes().getType()));
+        ids.add(Integer.valueOf(tasks.getMindset().getType()));
+        ids.add(Integer.valueOf(tip.getType()));
+        ids.add(Integer.valueOf(completed.getType()));
+
+
+        order.put("order",ids);
+
+    }
 
     public String loadJSONFromAsset(Activity activity, String fileName) {
         String json = null;
